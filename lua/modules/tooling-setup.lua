@@ -35,6 +35,7 @@ require("mason-tool-installer").setup({
 })
 
 -- LSP configs
+
 vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
@@ -44,6 +45,14 @@ vim.lsp.config("lua_ls", {
 			workspace = { library = vim.api.nvim_get_runtime_file("", true) },
 			telemetry = { enable = false },
 		},
+	},
+})
+
+-- For embedded
+vim.lsp.config("clangd", {
+	cmd = {
+		"clangd",
+		"--query-driver=" .. vim.env.HOME .. "/.platformio/packages/toolchain-*/bin/*",
 	},
 })
 
